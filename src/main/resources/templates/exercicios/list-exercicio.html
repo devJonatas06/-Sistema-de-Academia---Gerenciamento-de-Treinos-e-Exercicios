@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <title>Lista de Exercícios</title>
+</head>
+
+<body>
+<div class="container mt-4">
+
+    <h3>Lista de Exercícios</h3>
+    <hr />
+
+    <a th:href="@{/exercicios/showFormForAdd}" class="btn btn-primary mb-3 btn-sm">Adicionar Exercício</a>
+    <a th:href="@{/treinos/list}" class="btn btn-primary mb-3 btn-sm">Voltar para Treinos</a>
+
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Séries</th>
+            <th>Repetições</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="exercicio : ${exercicios}">
+            <td th:text="${exercicio.nome}">Nome do exercício</td>
+            <td th:text="${exercicio.series}">3</td>
+            <td th:text="${exercicio.repeticoes}">12</td>
+            <td>
+                <a th:href="@{/exercicios/showFormForUpdate(exercicioId=${exercicio.id})}">Editar</a>
+                <a th:href="@{/exercicios/delete(exercicioId=${exercicio.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Tem certeza que deseja deletar este exercício?')">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

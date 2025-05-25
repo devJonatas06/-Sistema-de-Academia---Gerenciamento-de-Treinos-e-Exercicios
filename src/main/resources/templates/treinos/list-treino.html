@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Treinos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Lista de Treinos</h1>
+    <a th:href="@{/treinos/showFormForAdd}" class="btn btn-primary mb-3">Adicionar Treino</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Duração (min)</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="treino : ${treinos}">
+            <td th:text="${treino.id}"></td>
+            <td th:text="${treino.nome}"></td>
+            <td th:text="${treino.duracaoMinutos}"></td>
+            <td>
+                <a th:href="@{/treinos/showFormForUpdate(treinoId=${treino.id})}"
+                   class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/treinos/delete(treinoId=${treino.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Tem certeza?')">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Duração (min)</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="treino : ${treinos}">
+            <td th:text="${treino.nome}">Nome do treino</td>
+            <td th:text="${treino.duracaoMinutos}">60</td>
+            <td>
+                <a th:href="@{/treinos/showFormForUpdate(treinoId=${treino.id})}" class="btn btn-info btn-sm">Editar</a>
+                <a th:href="@{/treinos/delete(treinoId=${treino.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                <a th:href="@{/treinos/exercicios(treinoId=${treino.id})}" class="btn btn-primary btn-sm">Ver Exercícios</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- cabeçalho mantido -->
+  <title>Formulário de Treino</title>
+</head>
+<body>
+<div class="container mt-4">
+  <h3>Formulário de Treino</h3>
+  <hr />
+  <form th:action="@{/treinos/save}" th:object="${treino}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <div class="mb-3">
+      <label class="form-label">Nome do Treino</label>
+      <input type="text" th:field="*{nome}" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Duração (minutos)</label>
+      <input type="number" th:field="*{duracaoMinutos}" class="form-control" min="1" required />
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a th:href="@{/treinos/list}" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
+</body>
+</html>
